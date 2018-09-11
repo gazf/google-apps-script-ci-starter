@@ -1,0 +1,19 @@
+box: node:alpine
+
+build:
+  steps:
+    - script:
+        name: init .clasprc.json .clasp.json
+        code: |
+          echo $CLASPRC_JSON > .clasprc.json
+          echo $CLASP_JSON > .clasp.json
+    - npm-install
+    - script:
+        name: login
+        code: |
+          npx clasp login
+    - script:
+        name: push
+        code: |
+          npx clasp push
+
